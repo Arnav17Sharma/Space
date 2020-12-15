@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+
+
+    <style>
+        @font-face
+        {
+            font-family: anurati;
+            src: url(../fonts/Anurati-Regular.otf);
+
+            font-family: blanka;
+            src: url(../fonts/Blanka-Regular.otf);
+
+            font-family: primal;
+            src: url(../fonts/Primal.otf);
+
+            font-family: centauri;
+            src: url(../fonts/AlphaCentauri\ 500.ttf);
+
+            font-family: atures300;
+            src: url(../fonts/Atures300PersonalUseOnly-amxR.ttf);
+
+            font-family: atures_500;
+            src: url(../fonts/Atures500PersonalUseOnly-GD6D.ttf);
+
+            font-family: atures900;
+            src: url(../fonts/Atures900PersonalUseOnly-oZMB.ttf);
+
+            font-family: charger;
+            src: url(../fonts/ChargerMonospace-Al2m.otf);
+        }
+
+        *
+        {
+            margin: 0;
+            padding: 0;
+        }
+
+        body
+        {
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            color: white;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 2px;
+        }
+
+        ul
+        {
+            width: 100%;
+            background:  black; /*121212*/
+        }
+
+        ul li
+        {
+            list-style: none;
+            display: inline-block;
+            padding: 20px;
+        }
+
+        ul li a
+        {
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .toggle
+        {
+            width: 100%;
+            padding: 5px 20px;
+            background: black;  /*121212*/
+            box-sizing: border-box;
+            text-align: right;
+            display: none;
+        }
+
+        .toggle .logo
+        {
+            position: relative;
+            top: 20px;
+            text-align: center;
+            font-size: 1.4rem;
+            font-family: anurati;
+            letter-spacing: 12px;
+        }
+
+        .toggle .menu {
+            position: relative;
+            bottom: 10px;
+        }
+        .toggle .logo a
+        {
+            text-decoration: none;
+            color: white;
+        }
+
+        /* .full{
+            position: absolute;
+            top: 30%;
+            left: 31.5%;
+            transform: translate(-50%,-50%);
+        } */
+
+        @media (max-width: 768px) 
+        {
+            .large-one {
+                display: none;
+            }
+            .toggle
+            {
+                display: block;
+            }
+            ul
+            {
+                width: 100%;
+                /* background-color: black;
+                background-color: opacity(12%); */
+                display: none;
+            }
+            ul li
+            {
+                display: block;
+                text-align: center;
+            }            
+            .active
+            {
+                display: block;
+            }
+            /* .full{
+                position: absolute;
+                top: 30%;
+                left: 12%;
+                transform: translate(-50%,-50%);
+            } */
+        }
+
+
+        section{
+            background: black;
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            /* display: flex; */
+            align-items: center;
+            justify-content: center;
+        }
+
+        section .star{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            animation: animate_star 8s ease-in-out infinite;
+        }
+
+        section .star.star1{
+            animation-delay: 0s;
+            background: url( "{{ url_for('static', filename='star1.png') }}" ) ;
+        }
+
+        section .star.star2{
+            animation-delay: -1s;
+            background: url( "{{ url_for('static', filename='star2.png') }}" ) ;
+        }
+
+        section .star.star3{
+            animation-delay: -2s;
+            background: url( "{{ url_for('static', filename='star3.png') }}" ) ;
+        }
+
+        section .star.star4{
+            animation-delay: -3s;
+            background: url( "{{ url_for('static', filename='star4.png') }}" ) ;
+        }
+        /* 
+        section .star.star5{
+            animation-delay: -4s;
+            background: url( "{{ url_for('static', filename='star1.png') }}" ) ;
+        }
+
+        section .star.star6{
+            animation-delay: -5s;
+            background: url( "{{ url_for('static', filename='star1.png') }}" ) ;
+        }
+
+        section .star.star7{
+            animation-delay: -6s;
+            background: url( "{{ url_for('static', filename='star1.png') }}" ) ;
+        }
+
+        section .star.star8{
+            animation-delay: -7s;
+            background: url( "{{ url_for('static', filename='star1.png') }}" ) ;
+        } */
+
+        @keyframes animate_star{
+            0%,20%,40%,60%,80%,100%
+            {
+                opacity: 0;
+            }
+            
+            10%,30%,50%,70%,90%
+            {
+                opacity: 1;
+            }
+        }
+
+
+
+
+
+        .padding{
+            padding: 0 10%;
+        }
+
+        .bordered{
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(#ffc791, #fda085), #ff7842;
+            animation: animate 1s linear infinite;
+            filter: blur(23px);
+        }
+        @keyframes animate{
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(360deg);
+            }
+        }
+        .bordered span{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(#ff804a, #fda085, #ff7842);
+        }
+
+        .bordered span:nth-child(1){
+            filter: blur(5px);
+        }
+
+        .bordered span:nth-child(2){
+            filter: blur(20px);
+        }
+
+        .bordered span:nth-child(3){
+            filter: blur(45px);
+        }
+        .bordered::after{
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            bottom: 30px;
+            background: black; /*121212*/
+            border-radius: 50%;
+        }
+
+        .image{
+            position: absolute;
+            top: 10%;
+            width: 256px;
+            height: 256px;
+            background-image: url( "{{ url_for('static', filename='mars.png') }}" );
+        }
+
+        .top-info {
+            text-align: center;
+            padding: 2rem 0 2rem 0;
+            position: relative;
+            right: 3%;
+            margin-bottom: 30px;
+        }
+
+        .fraction{
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .fraction .middle-info, .fraction .middle-info-2 
+        {
+            text-align: center;
+        }
+        /* .middle-info {
+            padding-left: 8rem;
+        }
+        .middle-info-2 {
+            width: 100%;
+            position: relative;
+            left: 110%;
+        } */
+
+
+        .bottom-mars {
+            margin-top: 20px;
+            width: 100%;
+            height: 20px;
+            background-color: red;
+        }
+
+        .nav-item
+        {
+            padding: 12px;
+            transition: 0.5s;
+        }
+
+        .nav-item:hover{
+            background-color: white;
+            color: black;
+        }
+        .clicked
+        {
+            background-color: white;
+            color: black;
+            padding: 12px;
+            border-radius: 2px;
+        }
+
+
+        @media (max-width: 800px) 
+        {
+            body
+            {
+                font-size:0.7rem;
+                overflow-x: auto;
+            }
+            .large-one {
+                display: none;
+            }
+            .toggle
+            {
+                display: block;
+            }
+            ul
+            {
+                width: 100%;
+                /* background-color: black;
+                background-color: opacity(12%); */
+                display: none;
+            }
+            ul li
+            {
+                display: block;
+                text-align: center;
+            }
+            .active
+            {
+                display: block;
+            }
+            /* .full{
+                position: absolute;
+                top: 40%;
+                left: 12%;
+                transform: translate(-50%,-50%);
+            } */
+            .fraction
+            {
+                display: grid;
+                grid-template-rows: 1fr 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body bgcolor="black">
+
+    <nav data-aos="fade-down" data-aos-delay="100" data-aos-duration="1200">
+        <div class="toggle">
+            <div class="logo">
+                <a href="#">SPACE</a>
+            </div>
+                <a style="cursor: pointer; background-color: black;">
+                    <svg class="menu" id="vector" width="30" height="27" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path id="Vector" d="M1.07143 5.51796H28.9286C29.5203 5.51796 30 5.0383 30 4.44653V1.76796C30 1.1762 29.5203 0.696533 28.9286 0.696533H1.07143C0.479665 0.696533 0 1.1762 0 1.76796V4.44653C0 5.0383 0.479665 5.51796 1.07143 5.51796ZM1.07143 16.2322H28.9286C29.5203 16.2322 30 15.7526 30 15.1608V12.4822C30 11.8905 29.5203 11.4108 28.9286 11.4108H1.07143C0.479665 11.4108 0 11.8905 0 12.4822V15.1608C0 15.7526 0.479665 16.2322 1.07143 16.2322ZM1.07143 26.9465H28.9286C29.5203 26.9465 30 26.4669 30 25.8751V23.1965C30 22.6048 29.5203 22.1251 28.9286 22.1251H1.07143C0.479665 22.1251 0 22.6048 0 23.1965V25.8751C0 26.4669 0.479665 26.9465 1.07143 26.9465Z" fill="white"/>
+                    </svg>
+                </a>          
+        </div>
+        <ul>
+            <li><a class="logo large-one" style="font-family: anurati; letter-spacing: 12px;margin-right: 20px; font-size: 1.5rem;" href="#">SPACE</a></li>
+            <li><a class="nav-item" href="#">Home</a></li>
+            <li><a class="nav-item" href="#">News</a></li>
+            <li><a class="nav-item clicked" href="#">Nasa</a></li>
+            <li><a class="nav-item" href="#">SpaceX</a></li>
+        </ul>
+    </nav>
+
+    <section style="height: auto;" data-aos="zoom-out-in">
+        <div class="star star1"></div>
+        <div class="star star2"></div>
+        <div class="star star3"></div>
+        <div class="star star4"></div>
+        <div class="star star5"></div>
+        <div class="star star6"></div>
+        <div class="star star7"></div>
+        <div class="star star8"></div>
+
+        <hr><br><br>
+        <u>
+            <center><h1 style="font-size: 30px;"><a style="text-decoration: none; color: white;" href="https://www.nasa.gov/mission_pages/insight/main/index.html" target="_blank">Insight Mars Lander</a></h1></center>
+        </u>
+            <br><br><hr><br><br>
+        {% for i in lst %}
+            <div class="top-info mars sol day" data-aos="zoom-out-up" data-aos-duration="1500">
+                <!-- <h1 style="font-size: 30px;"><a style="text-decoration: none; color: white;" href="https://www.nasa.gov/mission_pages/insight/main/index.html" target="_blank">Insight Mars Lander</a></h1> -->
+                <h2>Sol - {{ data[i]['sol'] }}</h2>
+                <h2>Earth Date - {{ data[i]['date'] }}</h2>
+            </div>
+            <div class="fraction">
+                <div class="middle-info" data-aos="fade-left" data-aos-duration="1500">
+                    <h2 style="margin-top: 1.5rem;">Season - {{ data[i]['season'] }}</h3>
+                    <h2 style="margin-top: 1.5rem;">Avg. Temp:{{ data[i]['atm_temp']['avg_temp'] }} °F</h2>
+                    <h2 style="margin-top: 1.5rem;">Max. Temp:{{ data[i]['atm_temp']['max_temp'] }} °F</h2>
+                    <h2 style="margin-top: 1.5rem;">Min. Temp:{{ data[i]['atm_temp']['min_temp'] }} °F</h2>
+                    <h4 style="margin-top: 1.5rem;">(Based on {{ data[i]['atm_temp']['total_cases'] }} observations)</h4>
+                </div>
+
+                <div class="full padding" data-aos="zoom-in-up" data-aos-duration="1500"> <!--data-aos="zoom-out-up"-->
+                    <div class="bordered">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="image"></div>
+                </div>
+
+                <div class="middle-info-2" data-aos="fade-right" data-aos-duration="1500">
+                    <h2 style="margin-top: 1.5rem;">Horizontal Wind Speed</h3>
+                    <h2 style="margin-top: 1.5rem;">Avg. Speed:{{ data[i]['hws']['avg_hws'] }} m/s</h2>
+                    <h2 style="margin-top: 1.5rem;">Max. Speed:{{ data[i]['hws']['max_hws'] }} m/s</h2>
+                    <h2 style="margin-top: 1.5rem;">Min. Speed:{{ data[i]['hws']['min_hws'] }} m/s</h2>
+                    <h4 style="margin-top: 1.5rem;">(Based on {{ data[i]['hws']['total_cases'] }} observations)</h4>
+                </div>
+
+            </div>
+            <br><br>
+            <center><hr></center>
+            <br><br>
+        {% endfor %}
+
+        <!-- <div style="width: 100%;">
+            {{ data }}
+        </div> -->
+
+        <!-- <div class="bottom-mars"></div> -->
+    </section>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.menu').click(function(){
+                $('ul').toggleClass('active')
+            })
+        })
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
