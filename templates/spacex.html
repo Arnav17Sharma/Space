@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NASA</title>
+    <title>SPACEX</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
@@ -278,7 +278,7 @@
             top: 10%;
             width: 256px;
             height: 256px;
-            background-image: url( "{{ url_for('static', filename='mars.png') }}" );
+            background-image: url( "{{ url_for('static', filename='mars.png') }}");
         }
 
         .top-info {
@@ -379,10 +379,49 @@
                 grid-template-rows: 1fr 1fr 1fr;
             }
         }
+
+        .rocket-full{
+            background: transparent;
+            border-radius: 10px;
+            box-shadow: 2px 4px 5px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            position: relative;
+            padding: 23px 12px;
+            margin: 30px 100px;
+        }
+        
+        .rocket-full:hover{
+            transform: scale(0.98);
+        }
+
+        .rocket-carry {
+            width: 65%;
+            /* background-color: blueviolet; */
+            display: flex;
+            flex-direction: column;
+            left: 100px;
+            padding: 12px 40px;
+            
+        }
+
+        .rocket-img {
+            margin: 12px 30px;
+            left: 50px;
+        }
+
+        .rocket-me {
+            height: 200px;
+            width: 400px;
+        }
+
+        
+
+        
     </style>
 </head>
-<body bgcolor="black">
-
+<div bgcolor="black">
     <nav data-aos="fade-down" data-aos-delay="100" data-aos-duration="1200">
         <div class="toggle">
             <div class="logo">
@@ -397,8 +436,8 @@
             <li><a class="logo large-one" style="font-family: anurati; letter-spacing: 12px;margin-right: 20px; font-size: 1.5rem;" href="#">SPACE</a></li>
             <li><a class="nav-item" href="#">Home</a></li>
             <li><a class="nav-item" href="#">News</a></li>
-            <li><a class="nav-item clicked" href="{{ url_for('home') }}">Nasa</a></li>
-            <li><a class="nav-item" href="{{ url_for('spacex') }}">SpaceX</a></li>
+            <li><a class="nav-item" href="{{ url_for('home') }}">Nasa</a></li>
+            <li><a class="nav-item clicked" href="{{ url_for('spacex') }}">SpaceX</a></li>
         </ul>
     </nav>
 
@@ -414,46 +453,28 @@
 
         <hr><br><br>
         <u>
-            <center><h1 style="font-size: 30px;"><a style="text-decoration: none; color: white;" href="https://www.nasa.gov/mission_pages/insight/main/index.html" target="_blank">Insight Mars Lander</a></h1></center>
+            <center><h1 style="font-size: 30px;"><a style="text-decoration: none; color: white;" href="#">SpaceX Rockets</a></h1></center>
         </u>
-            <br><br><hr><br><br>
-        {% for i in lst %}
-            <div class="top-info mars sol day" data-aos="zoom-out-up" data-aos-duration="1500">
-                <!-- <h1 style="font-size: 30px;"><a style="text-decoration: none; color: white;" href="https://www.nasa.gov/mission_pages/insight/main/index.html" target="_blank">Insight Mars Lander</a></h1> -->
-                <h2>Sol - {{ data[i]['sol'] }}</h2>
-                <h2>Earth Date - {{ data[i]['date'] }}</h2>
+        <br><br><hr><br><br>
+
+        {% for rocket in data %}
+        <div class="rocket-full" data-aos="zoom-out-up" data-aos-duration="1500">
+            <div class="rocket-img"><img class="rocket_me" src="{{ rocket['info'][1]['img_src'] }}" alt="PHUTU"></div>
+            <div class="rocket-carry">
+                <h1>Name : {{ rocket['info'][1]['name'] }}</h1>
+                <h1>Country : {{ rocket['info'][1]['country'] }}</h1>
+                <h1>Mass(kg) : {{ rocket['info'][1]['mass'] }}</h1>
+                <h1>Height(m) : {{ rocket['info'][1]['height'] }}</h1>
+                <h1>Cost/launch : {{ rocket['info'][1]['cost'] }}</h1>
+                <h4>Description : {{ rocket['info'][1]['desc'] }}</h4>
             </div>
-            <div class="fraction">
-                <div class="middle-info" data-aos="fade-left" data-aos-duration="1500">
-                    <h2 style="margin-top: 1.5rem;">Season - {{ data[i]['season'] }}</h3>
-                    <h2 style="margin-top: 1.5rem;">Avg. Temp:{{ data[i]['atm_temp']['avg_temp'] }} °F</h2>
-                    <h2 style="margin-top: 1.5rem;">Max. Temp:{{ data[i]['atm_temp']['max_temp'] }} °F</h2>
-                    <h2 style="margin-top: 1.5rem;">Min. Temp:{{ data[i]['atm_temp']['min_temp'] }} °F</h2>
-                    <h4 style="margin-top: 1.5rem;">(Based on {{ data[i]['atm_temp']['total_cases'] }} observations)</h4>
-                </div>
-
-                <div class="full padding" data-aos="zoom-in-up" data-aos-duration="1500"> <!--data-aos="zoom-out-up"-->
-                    <div class="bordered">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div class="image"></div>
-                </div>
-
-                <div class="middle-info-2" data-aos="fade-right" data-aos-duration="1500">
-                    <h2 style="margin-top: 1.5rem;">Horizontal Wind Speed</h3>
-                    <h2 style="margin-top: 1.5rem;">Avg. Speed:{{ data[i]['hws']['avg_hws'] }} m/s</h2>
-                    <h2 style="margin-top: 1.5rem;">Max. Speed:{{ data[i]['hws']['max_hws'] }} m/s</h2>
-                    <h2 style="margin-top: 1.5rem;">Min. Speed:{{ data[i]['hws']['min_hws'] }} m/s</h2>
-                    <h4 style="margin-top: 1.5rem;">(Based on {{ data[i]['hws']['total_cases'] }} observations)</h4>
-                </div>
-
-            </div>
-            <br><br>
-            <center><hr></center>
-            <br><br>
+        </div>
+        <br><br><br>
+        <center><hr style="width: 60%;text-align: center;"></center>
+        <br><br><br>
         {% endfor %}
+
+
 
         <!-- <div style="width: 100%;">
             {{ data }}
@@ -476,5 +497,6 @@
     <script>
         AOS.init();
     </script>
+
 </body>
 </html>
