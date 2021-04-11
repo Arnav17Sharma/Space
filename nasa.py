@@ -11,7 +11,7 @@ def get_data():
     link = 'https://api.nasa.gov/insight_weather/?api_key=GQTy0PABPwM6YcSxKjJASJaLoiWClsAXNUb1MR1O&feedtype=json&ver=1.0'
     r = requests.get(link)
 
-    package_json = json.loads(r)
+    package_json = r.json()
 
     # return (package_json)
     dict_Sol = {}
