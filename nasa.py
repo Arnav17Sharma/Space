@@ -7,11 +7,11 @@ d = '''{"sol_keys": [ "259", "260", "261", "262", "263", "264", "265" ],"259": {
 
 
 def get_data():
-    # API_KEY = '7QwSQ0CFZLiQDeEymYbcBZAXcUbDL0ZFI1xc0m9i'
-    # link = 'https://api.nasa.gov/insight_weather/?api_key=GQTy0PABPwM6YcSxKjJASJaLoiWClsAXNUb1MR1O&feedtype=json&ver=1.0'
-    # r = requests.get(link)
+    API_KEY = '7QwSQ0CFZLiQDeEymYbcBZAXcUbDL0ZFI1xc0m9i'
+    link = 'https://api.nasa.gov/insight_weather/?api_key=GQTy0PABPwM6YcSxKjJASJaLoiWClsAXNUb1MR1O&feedtype=json&ver=1.0'
+    r = requests.get(link)
 
-    package_json = json.loads(d)
+    package_json = json.loads(r)
 
     # return (package_json)
     dict_Sol = {}
